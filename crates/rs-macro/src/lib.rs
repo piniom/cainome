@@ -1,4 +1,4 @@
-#![feature(proc_macro_expand)]
+#![ cfg_attr( feature = "expand-expr", feature(proc_macro_expand) ) ]
 use cainome_parser::{AbiParser, AbiParserLegacy};
 use proc_macro::TokenStream;
 use quote::quote;
