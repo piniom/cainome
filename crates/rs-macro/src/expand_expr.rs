@@ -1,10 +1,7 @@
 use proc_macro::TokenStream;
 use proc_macro2::{TokenStream as TokenStream2, TokenTree};
 use quote::ToTokens;
-use syn::{
-    parse::Result,
-    Expr, Lit, LitStr,
-};
+use syn::{parse::Result, Expr, Lit, LitStr};
 
 pub fn expand_to_literal(expr: Expr) -> Result<LitStr> {
     let token_stream: TokenStream = expr.to_token_stream().into();
@@ -12,7 +9,6 @@ pub fn expand_to_literal(expr: Expr) -> Result<LitStr> {
 
     token_stream_as_lit_str(abi_or_path_expr)
 }
-
 
 fn token_stream_as_lit_str(input: TokenStream) -> Result<LitStr> {
     let input: TokenStream2 = input.into();

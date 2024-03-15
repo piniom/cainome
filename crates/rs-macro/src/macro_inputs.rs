@@ -43,14 +43,11 @@ impl Parse for ContractAbi {
 
         // let abi_or_path = input.parse::<LitStr>()?;
 
-        // ABI path or content.
-    
-
-
         // Expand the expression (specifically useful for include_str!(...))
         #[cfg(feature = "expand-expr")]
         let abi_or_path = crate::expand_expr::expand_to_literal(input.parse::<syn::Expr>()?)?;
 
+        // ABI path or content.
         #[cfg(not(feature = "expand-expr"))]
         let abi_or_path = input.parse::<LitStr>()?;
 
@@ -179,5 +176,3 @@ fn open_json_file(file_path: &str) -> Result<File> {
 pub fn str_to_litstr(str_in: &str) -> LitStr {
     LitStr::new(str_in, proc_macro::Span::call_site().into())
 }
-
-
