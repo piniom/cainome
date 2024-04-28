@@ -1,11 +1,14 @@
+#![ cfg_attr( feature = "expand-expr", feature(proc_macro_expand) ) ]
 use cainome_parser::{AbiParser, AbiParserLegacy};
-use cainome_rs::{self};
 use proc_macro::TokenStream;
 use quote::quote;
 
 mod macro_inputs;
 mod macro_inputs_legacy;
 mod spanned;
+
+#[cfg(feature = "expand-expr")]
+mod expand_expr;
 
 use crate::macro_inputs::ContractAbi;
 use crate::macro_inputs_legacy::ContractAbiLegacy;

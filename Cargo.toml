@@ -1,6 +1,6 @@
 [package]
 name = "cainome"
-version = "0.2.3"
+version = "0.2.4-expand"
 edition = "2021"
 
 [workspace]
@@ -54,6 +54,7 @@ tokio = { version = "1.15.0", features = ["full"], optional = true }
 default = []
 abigen-rs = ["cainome-rs-macro"]
 build-binary = ["tokio"]
+expand-expr = ["cainome-rs-macro/expand-expr"]
 
 [[bin]]
 name = "cainome"

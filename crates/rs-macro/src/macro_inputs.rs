@@ -41,9 +41,14 @@ impl Parse for ContractAbi {
         let name = input.parse::<Ident>()?;
         input.parse::<Token![,]>()?;
 
-        // ABI path or content.
+        // let abi_or_path = input.parse::<LitStr>()?;
 
-        // Path rooted to the Cargo.toml location if it's a file.
+        // Expand the expression (specifically useful for include_str!(...))
+        #[cfg(feature = "expand-expr")]
+        let abi_or_path = crate::expand_expr::expand_to_literal(input.parse::<syn::Expr>()?)?;
+
+        // ABI path or content.
+        #[cfg(not(feature = "expand-expr"))]
         let abi_or_path = input.parse::<LitStr>()?;
 
         #[allow(clippy::collapsible_else_if)]
